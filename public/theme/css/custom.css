@@ -1,0 +1,131 @@
+.post-block{
+  width: 20%;
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #28A9E0;
+  color: #fff;
+  cursor: pointer;
+  border-bottom: 2px solid #f0f0f0;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.post-block:hover{
+  background-color: darkslategray;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+a:active{
+  color: inherit;
+  text-decoration: none;
+}
+
+.createClient{
+  width: 200px;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: forestgreen;
+  color: #FFF;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.createClient:hover{
+  background-color: darkgreen;
+}
+
+.updateText{
+  font-size: 1.5em;
+}
+
+.postIco{
+  width: 40px;
+}
+
+.showBox{
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.red{
+  background-color: #E25A59;
+}
+
+.showBoxTitle{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color:rgba(255,0,0,0.3);
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.showBoxResult{
+  text-align: center;
+  font-size: 40px;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.showOptions{
+  height: auto;
+  background-color: dimgray;
+  border-radius: 5px;
+  min-height: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+
+}
+
+.twitterBlue{
+  background-color: #59ADEA;
+  color: #fff;
+}
+
+.iCon{
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  margin: 6px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+
+}
+
+.iCon >div{
+
+}
+
+.iCon:hover > div{
+  display:inherit;
+}
+
+.img-op{
+  background-color: rgba(215, 46, 44, 0.4);
+  background: rgba(215, 46, 44, 0.4);
+  color: #fff;
+  z-index: 20;
+  width: auto;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 2px;
+  text-align: right;
+  display: none;
+  height: 20px;
+}
