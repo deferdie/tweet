@@ -310,6 +310,8 @@ $email = $user->email;
 
 		<script src="<?=asset('theme/js/custom.js');?>"></script>
 
+		<script src="<?=asset('theme/js/posts.js');?>"></script>
+
 
 	<!-- end: JavaScript-->
 
