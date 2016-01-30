@@ -1,3 +1,25 @@
+  var images = [];
+$('.iCon').click(function(){
+  var t = $(this).attr('data-imd');
+  //Check if id is in array
+  if(inArray(t, images) == -1){
+    //Add to array
+    images.push(t);
+    $(this).css('border-color', '#ff0000');
+
+  }else{
+    // Remove from array
+    var remove = images.indexOf(t);
+    images.splice(remove, 1);
+    $(this).css('border-color', '#000');
+
+  }
+});
+
+function inArray(item, inArray) {
+    return a = inArray.indexOf(item);
+  }
+
 function deletePost(href, csrf_token){
     $.post('delete-shedule-post', {postID: href, _token: csrf_token}, function(data){
        //alert(data);
