@@ -17,8 +17,17 @@ $('.iCon').click(function(){
 });
 
 function inArray(item, inArray) {
-    return a = inArray.indexOf(item);
-  }
+  return a = inArray.indexOf(item);
+}
+
+$('.data-del').click(function(){
+  var id = $(this).attr('data-del');
+  deleteImage(id);
+})
+
+function deleteImage(id){
+  $('#'+id+'mediaImage').fadeOut(200);
+}
 
 function deletePost(href, csrf_token){
     $.post('delete-shedule-post', {postID: href, _token: csrf_token}, function(data){
