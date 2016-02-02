@@ -25,6 +25,7 @@ Route::get('/sign-up', function () {
 
 // Authentication routes...
 Route::get('/login', 'Auth\AuthController@getLogin');
+Route::get('/auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('member', 'Auth\AuthController@postLogin');
 Route::post('/', 'Auth\AuthController@postLogin');
@@ -58,6 +59,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
       ]);
     });
 
+
     Route::get('user/profile', function(){
       return view('member.profile', ['title' => "Your Profile"]);
     });
@@ -76,8 +78,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
     Route::get('shedule-posts', function(){
       $user = Auth::user();
       $userID = $user->id;
-      $clients = DB::table('posts')->where('userID', $userID)->orderBy('id', 'asc')->paginate(6);
-      $clients->setPath('\shedule-posts');
+      $clients = DB::table('posts')->where('userID', $userID)->orderBy('id', 'asc')->get();
         return view('member.shedule-posts', [
           'posts' => $clients,
           'title' => "Shedule Posts"
@@ -92,7 +93,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
           ]);
       });
 
-    Route::get('media', function(){
+    Route::get('media', ['as' => 'media', function(){
       $user = Auth::user();
       $userID = $user->id;
       $images = DB::table('images')->where('userID', $userID)->get();
@@ -100,7 +101,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
             'title' => "Your Media",
             'images' => $images
           ]);
-      });
+      }]);
 
     //POSTS ROUTES START
     Route::post('/create-client', 'clientController@createClient');
@@ -125,6 +126,9 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
     //Routes for editing posts
     Route::post('delete-shedule-post', 'tweetController@destroy');
+    Route::get('get-post-message', 'tweetController@getPostMessage');
+    Route::post('edit-shedule-post', 'tweetController@editPost');
+    Route::post('edit-shedule-message', 'tweetController@editPostMessage');
 
     //NotficationController ROUTES
     Route::get('view-notifications', 'NotficationController@notiView');
@@ -134,8 +138,16 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
     Route::any('form-submit', 'fileManagerController@uploadImage');
 
+    //Get user images;
+    Route::get('user-images', 'fileManagerController@getImages');
+    //Delete user Image
+    Route::post('deleteImage', 'fileManagerController@deleteImage');
+
 });
 
  Route::get('/sendCronJobs', 'tweetController@sendCronJobs');
+ Route::any('/test2', 'twitterOauth@test2');
 //callback URLS
-
+Route::any('test', [
+    'as' => 'test', 'uses' => 'twitterOauth@test'
+]);
