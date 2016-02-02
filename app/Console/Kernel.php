@@ -7,6 +7,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Log;
 use DB;
 use App\Http\Controllers;
+use App\Http\Controllers\twitterOauth;
+
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -26,6 +29,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+
       $posts = DB::table('posts')->where('status', '1')->get();
 
       foreach($posts as $post){
@@ -36,7 +41,7 @@ class Kernel extends ConsoleKernel
         $message = $post->message;
         $postDate = $post->date;
         $postTime = $post->time;
-        $postMedia = $post->image;
+        $imageExists = $post->image;
         //Get oAuth
 
         $oauth = DB::table('twitterOAuth')->where('clientID', $clientID)->get();
@@ -45,24 +50,35 @@ class Kernel extends ConsoleKernel
 
           $publicAuth = $auth->oauth_token;
           $authSecret = $auth->oauth_token_secret;
-          \Codebird\Codebird::setConsumerKey('jtB9eFeOc1iHYN08GIXuZIZtx','09JZMkC0y55Czp0GRUnYufqka1zorPVFiyqdhVqAtWzApoNsof');
-          $twitterClient = \Codebird\Codebird::getInstance();
+
           date_default_timezone_set($clientTimeZone);
           $time = date('H:i', time());
           $date = date("d-m-Y");
-
+          $st = new twitterOauth();
           if($date == $postDate){
             if($time == $postTime){
-            //Send the message
-            $twitterClient->setToken($publicAuth, $authSecret);
-
-              if($postMedia == 0){
-                $params = array(
-                  'status' => $message
-                );
-                //Send the Tweet
-                $reply = $twitterClient->statuses_update($params);
+              if($imageExists == 0){
+                $st->sendTweet($publicAuth, $authSecret, $message);
+              }else{
+                Log::info('getting sent');
+                $st->sendTweetWithMedia($publicAuth, $authSecret, $message, $postID, $userID);
+                Log::info('sent');
               }
+              /*
+              $status = $reply->httpstatus;
+
+              if($status == 200) {
+
+                // mark topic as tweeted (ensure that it will be tweeted only once)
+                Log::info('Sent Twitter In media');
+                }else {
+                $twitterClient->setReturnFormat(CODEBIRD_RETURNFORMAT_ARRAY);
+
+                foreach($reply as $re){
+                Log::info($re);
+                }
+*/
+
               DB::table('posts')->where('id', $postID)->update(['status' => 0]);
               //Log::info('Sent Twitter ' . $postID);
 
@@ -76,6 +92,10 @@ class Kernel extends ConsoleKernel
                 //Exists Increments
                 DB::table('userStats')->where('userID', $userID)->increment('postSent');
                 DB::table('userStats')->where('userID', $userID)->increment('twitterPostsSent');
+
+              }
+
+
               }
 
             }
@@ -84,7 +104,6 @@ class Kernel extends ConsoleKernel
 
         }
 
-      }
+}
 
-    }
 }
