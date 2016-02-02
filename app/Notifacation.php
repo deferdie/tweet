@@ -14,4 +14,5 @@ class Notifacation extends Model
       $notification->icon = 'icon-user';
       $notification->save();
     }
+
 }
