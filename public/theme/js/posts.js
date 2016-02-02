@@ -26,6 +26,10 @@ $('.data-del').click(function(){
 })
 
 function deleteImage(id){
+  var csrf = $('meta[name="csrf-token"]').attr('content');
+  $.post('deleteImage', {imageID : id, _token: csrf}, function(data){
+    alert(data);
+  });
   $('#'+id+'mediaImage').fadeOut(200);
 }
 
@@ -55,12 +59,20 @@ function editClientModal(href, csrf_token){
     });
 }
 
-function editPost(href, csrf_token){
+function editMesageModal(href, csrf_token){
     $.post('edit-shedule-post', {postID: href, _token: csrf_token}, function(data){
       $('.updateTextEdit').html(data);
+      $('#mesid').val(href);
       $('#myModalEdit').modal('show');
     });
 }
+
+$('#updF').bind().unbind().submit(function(){
+  $.post('edit-shedule-message', $('#updF').serialize(), function(data){
+      alert(data);
+    });
+  return false;
+});
 
 function createTweet(formVars){
       $.post('create-shedule-tweet', formVars , function(data){
@@ -90,4 +102,43 @@ function addTwitter(csrf_token){
 
 function openWindow(data){
   window.open(data, "windowName", "height=500,width=500");
+}
+
+$('#cTe').click(function(){
+  var f = $('#sTweet').serialize()
+  createTweet(f);
+  return false;
+});
+
+$('#upImg').click(function(){
+  $('#disImg').html('');
+  $.get('user-images', {}, function(data){
+    $.each(data, function(i, item) {
+      $('#disImg').append('<div class="col-md-1 iCon" data-imd="'+data[i].id+'" id="'+data[i].id+'mediaImage"><div class="img-op data-del" data-del="'+data[i].id+'"><i class="halflings-icon white trash im"></i></div><img width="200" src="'+data[i].imagePath+'/'+data[i].imageName+'" alt="'+data[i].imageName+'" data-image="'+data[i].imageName+'"></div>');
+    });
+    $('#upImgs').modal('show');
+    selectImg();
+  });
+
+});
+
+function selectImg(){
+  var images = [];
+$('.iCon').click(function(){
+
+  var t = $(this).attr('data-imd');
+  //Check if id is in array
+  if(inArray(t, images) == -1){
+    //Add to array
+    images.push(t);
+    $(this).css('border-color', '#ff0000');
+    $('#imgs').val(JSON.stringify(images));
+  }else{
+    // Remove from array
+    var remove = images.indexOf(t);
+    images.splice(remove, 1);
+    $(this).css('border-color', '#000');
+
+  }
+});
 }
