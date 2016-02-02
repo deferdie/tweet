@@ -110,13 +110,17 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Edit Message</h4>
       </div>
-      <div class="modal-body">
-        <textarea class="updateTextEdit"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Update</button>
-      </div>
+      <form id="updF">
+        {!! csrf_field() !!}
+        <input type="hidden" name="medi" id="mesid" value="" />
+        <div class="modal-body">
+          <textarea class="updateTextEdit" name="mes"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-default" value="Update" />
+        </div>
+      </form>
     </div>
 
   </div>
@@ -138,7 +142,7 @@
 
   $('.enabled').click(function(){
     var href = $(this).attr('data-href');
-    editPost(href,$('meta[name="csrf-token"]').attr('content'));
+    editMesageModal(href,$('meta[name="csrf-token"]').attr('content'));
     return false;
   });
 
