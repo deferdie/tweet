@@ -51,7 +51,8 @@ data-source='[<?php foreach($clients as $clientName){?>"<?=$clientName->clientNa
 							<div class="control-group">
 							  <label class="control-label" for="fileInput">Select Image</label>
 							  <div class="controls">
-								<div class="btn">Select Images</div>
+								<div class="btn" data-toggle="modal" id="upImg">Select Images</div>
+
 							  </div>
 							</div>
 							<div class="control-group hidden-phone">
@@ -61,6 +62,7 @@ data-source='[<?php foreach($clients as $clientName){?>"<?=$clientName->clientNa
 							  </div>
 							</div>
 							<div class="form-actions">
+                              <input type="hidden" id="imgs" value="" name="img" />
 							  <button type="submit" class="btn btn-primary" id="cTe">Shedule Post</button>
 							  <button type="reset" class="btn">Cancel</button>
 							</div>
@@ -76,29 +78,26 @@ data-source='[<?php foreach($clients as $clientName){?>"<?=$clientName->clientNa
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script type="text/javascript" src="<?=asset('theme/clock/dist/bootstrap-clockpicker.min.js')?>"></script>
 
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
-  });
-  </script>
-<script type="text/javascript" src="<?=asset('theme/js/posts.js')?>"></script>
-<script type="text/javascript">
-  $('#cTe').click(function(){
-    var f = $('#sTweet').serialize()
-    createTweet(f);
-    return false;
-  });
+<!-- Modal -->
+<div id="upImgs" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-</script>
-<script type="text/javascript">
-$('.clockpicker').clockpicker()
-	.find('input').change(function(){
-		console.log(this.value);
-	});
-var input = $('#single-input').clockpicker({
-	placement: 'bottom',
-	align: 'left',
-	autoclose: true,
-	'default': 'now'
-});</script>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Select Images</h4>
+      </div>
+      <div class="modal-body">
+       <div id="disImg"></div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 @endsection
