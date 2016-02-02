@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use Auth;
 use DB;
+use Log;
 use App\SocialMediaVault;
 class twitterOauth extends Controller
 {
@@ -102,6 +103,56 @@ class twitterOauth extends Controller
 
   protected function hasCallback(){
     return isset($_GET['oauth_verifier']);
+  }
+
+  public function sendTweetWithMedia($publicAuth, $authSecret, $message, $postID, $userID){
+    \Codebird\Codebird::setConsumerKey('jtB9eFeOc1iHYN08GIXuZIZtx','09JZMkC0y55Czp0GRUnYufqka1zorPVFiyqdhVqAtWzApoNsof');
+    $twitterClient = \Codebird\Codebird::getInstance();
+    $twitterClient->setToken($publicAuth, $authSecret);
+    //Media to upload.
+    //get images
+    $images = DB::table('imagesToSends')->where('postID', $postID)->get();
+    $media_files = [];
+    foreach($images as $image){
+      $imagePaths = DB::table('images')->where('id', $image->imageID)->get();
+      foreach($imagePaths as $path){
+        array_push($media_files, "/home/vagrant/Code/Laravel/public/storage/$userID/$path->imageName");
+      }
+    }
+
+    /*
+    WORKING EXAMPLE
+    $media_files = [
+      '/home/vagrant/Code/Laravel/public/storage/1/dsc_0003.jpg', '/home/vagrant/Code/Laravel/public/storage/1/dsc_0007.jpg', '/home/vagrant/Code/Laravel/public/storage/1/dsc_0003.jpg'
+    ]*/;
+
+    $media_ids = [];
+    Log::info("Logging an array: " . print_r($media_files, true));
+    foreach ($media_files as $file) {
+      $reply = $twitterClient->media_upload(['media' => $file]);
+      Log::info("Logging an array: " . print_r($reply, true));
+      $media_ids[] = $reply->media_id_string;
+    }
+    $media_ids = implode(',', $media_ids);
+
+    // send Tweet with these medias
+    $reply = $twitterClient->statuses_update([
+      'status' => $message,
+      'media_ids' => $media_ids
+    ]);
+
+
+  }
+
+  public function sendTweet($publicAuth, $authSecret, $message){
+    \Codebird\Codebird::setConsumerKey('jtB9eFeOc1iHYN08GIXuZIZtx','09JZMkC0y55Czp0GRUnYufqka1zorPVFiyqdhVqAtWzApoNsof');
+    $twitterClient = \Codebird\Codebird::getInstance();
+    $twitterClient->setToken($publicAuth, $authSecret);
+    $params = array('status' => $message);
+      //Send the Tweet
+    $reply = $twitterClient->statuses_update($params);
+
+
   }
 
 }
