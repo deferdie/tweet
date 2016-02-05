@@ -189,7 +189,7 @@ $email = $user->email;
 
 
 
-						<li><a href="calendar.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
+						<li><a href="/calendar"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
 
 
 						<li><a href="/logout"><i class="icon-lock"></i><span class="hidden-tablet">Sign Out</span></a></li>
