@@ -12,8 +12,8 @@ use Log;
 class tweetController extends Controller
 {
 
-    public function createTweet()
-    {
+  public function createTweet()
+  {
       $user = Auth::user();
       $memberID = $user->id;
 
@@ -127,6 +127,12 @@ class tweetController extends Controller
     $savePost->message = $mes;
     $savePost->save();
     echo "Saved";
+  }
+
+  public function getPostsJson(){
+    $user = Auth::user();
+    $memberID = $user->id;
+    return $posts = Post::where('userID', $memberID)->get();
   }
 
 }
