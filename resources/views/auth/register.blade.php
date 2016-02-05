@@ -1,4 +1,4 @@
-@extends('master-front')
+@extends('master-font')
 
 <form method="POST" action="/auth/register" class="memberBookForm">
 {!! csrf_field() !!}
