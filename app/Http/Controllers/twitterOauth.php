@@ -15,7 +15,8 @@ class twitterOauth extends Controller
 {
 
   protected $client;
-  protected $clientCallBack = "http://tweet.app/twitter/auth/callback";
+  //protected $clientCallBack = "http://tweet.app/twitter/auth/callback";
+  protected $clientCallBack = "http://tweetamatic.co.uk/twitter/auth/callback";
   protected $oauthToken;
   protected $oauthSecret;
 
