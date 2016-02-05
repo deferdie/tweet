@@ -103,6 +103,10 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
           ]);
       }]);
 
+    Route::get('/calendar', function(){
+      return view('member.calender');
+    });
+
     //POSTS ROUTES START
     Route::post('/create-client', 'clientController@createClient');
     Route::post('/user/delete/client', 'clientController@destroyClient');
@@ -137,11 +141,15 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
     Route::get('getNotificationCount', 'NotficationController@getNotificationCount');
 
     Route::any('form-submit', 'fileManagerController@uploadImage');
-
     //Get user images;
     Route::get('user-images', 'fileManagerController@getImages');
     //Delete user Image
     Route::post('deleteImage', 'fileManagerController@deleteImage');
+
+
+    //Routes for Shedule
+
+    Route::get('/usr/cal/get-posts-json', 'tweetController@getPostsJson');
 
 });
 
