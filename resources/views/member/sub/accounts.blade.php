@@ -4,7 +4,7 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="showOptions">
-        <a href="create-shedule-tweet">
+        <a href="create-sub-user">
          <div class="post-block">
            Create User
          </div>
