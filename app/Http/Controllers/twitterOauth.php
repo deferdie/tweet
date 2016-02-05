@@ -117,7 +117,8 @@ class twitterOauth extends Controller
     foreach($images as $image){
       $imagePaths = DB::table('images')->where('id', $image->imageID)->get();
       foreach($imagePaths as $path){
-        array_push($media_files, "/home/vagrant/Code/Laravel/public/storage/$userID/$path->imageName");
+        //array_push($media_files, "/home/vagrant/Code/Laravel/public/storage/$userID/$path->imageName");
+        array_push($media_files, "/home/forge/tweetamatic.co.uk/public/storage/$userID/$path->imageName");
       }
     }
 
