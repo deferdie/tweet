@@ -68,11 +68,12 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
       $user = Auth::user();
       $userID = $user->id;
       $clients = DB::table('clients')->where('userID', $userID)->orderBy('clientName', 'asc')->paginate(6);
-          $clients->setPath('\clients');
-          return view('member.clients', [
-            'clients' => $clients,
-            'title' => "Your Clients"
-          ]);
+      $clients->setPath('\clients');
+
+        return view('member.clients', [
+          'clients' => $clients,
+          'title' => "Your Clients"
+        ]);
       });
 
     Route::get('shedule-posts', function(){
