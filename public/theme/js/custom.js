@@ -2286,3 +2286,33 @@ var input = $('#single-input').clockpicker({
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
   });
+
+//Tweet Limit
+
+$('#textarea2s').keypress(function(){
+  var limit = 140;
+  var curLength = $('#textarea2s').val();
+
+  if(curLength.length > 140){
+    $('#lef').css('color', '#F00');
+    $('#lef').html(curLength.length - limit);
+  }else{
+    $('#lef').css('color', '#000');
+    $('#lef').html(limit - curLength.length);
+  }
+
+});
+
+$('#textarea2s').on('change', function(){
+  var limit = 140;
+  var curLength = $('#textarea2s').val();
+
+  if(curLength.length > 140){
+    $('#lef').css('color', '#F00');
+    $('#lef').html(curLength.length - limit);
+  }else{
+    $('#lef').css('color', '#000');
+    $('#lef').html(limit - curLength.length);
+  }
+
+});
