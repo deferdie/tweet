@@ -12,7 +12,7 @@
         <div class="control-group">
           <!-- E-mail -->
           <div class="controls">
-            <input type="email" name="email" value="{{ old('email') }}" class="input-xlarge" placeholder="Your Email. (We do not spam. :)">
+            <input type="email" name="email" value="{{ old('email') }}" class="input-xlarge" placeholder="Your Email. We do not spam. :)">
           </div>
         </div>
 
