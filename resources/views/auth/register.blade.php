@@ -5,14 +5,14 @@
         <div class="control-group">
           <!-- Username -->
           <div class="controls">
-            <input type="text" name="name" value="{{ old('name') }}" placeholder="Your Name">
+            <input type="text" name="name" class="input-xlarge" value="{{ old('name') }}" placeholder="Your Name">
           </div>
         </div>
 
         <div class="control-group">
           <!-- E-mail -->
           <div class="controls">
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="Your Email. (We do not spam. :)">
+            <input type="email" name="email" value="{{ old('email') }}" class="input-xlarge" placeholder="Your Email. (We do not spam. :)">
           </div>
         </div>
 
