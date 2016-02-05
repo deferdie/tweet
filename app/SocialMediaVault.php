@@ -10,4 +10,10 @@ class SocialMediaVault extends Model
     $SocialMediaVault = SocialMediaVault::find($userID);
     return $SocialMediaVault->twitterName;
   }
+
+  public function deleteSocialMediaAccount($userID){
+    $socialMediaToDelete = SocialMediaVault::destroy($userID);
+    echo 'Removed';
+  }
+
 }
