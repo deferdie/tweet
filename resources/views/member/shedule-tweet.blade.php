@@ -61,7 +61,9 @@ data-source='[<?php foreach($clients as $clientName){?>"<?=$clientName->clientNa
 								<textarea class="cleditord" name="tweetMessage" id="textarea2s" rows="3" placeholder="Enter your Tweet"></textarea>
 							  </div>
 							</div>
+
 							<div class="form-actions">
+                             <div id="lef">140</div>
                               <input type="hidden" id="imgs" value="" name="img" />
 							  <button type="submit" class="btn btn-primary" id="cTe">Shedule Post</button>
 							  <button type="reset" class="btn">Cancel</button>
