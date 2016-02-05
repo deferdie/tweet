@@ -43,7 +43,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="about-us.html">About</a></li>
                         <li><a href="services.html">Pricing</a></li>
-                        <li><a href="Register">Register</a></li>
+                        <li><a href="auth/register">Register</a></li>
                         <li><a href="contact-us">Contact</a></li>
                         <li class="login">
                             <a data-toggle="modal" href="#loginForm"><i class="icon-lock"></i></a>
