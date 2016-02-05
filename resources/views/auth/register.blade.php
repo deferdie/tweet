@@ -1,6 +1,7 @@
 @extends('master-font')
  <section id="registration-page" class="container">
     <form class="center" action='/auth/register' method="POST">
+     {!! csrf_field() !!}
       <fieldset class="registration-form">
         <div class="control-group">
           <!-- Username -->
