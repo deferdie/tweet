@@ -1,6 +1,6 @@
 @extends('master-back')
 @section('content')
-<form method="POST" action="http://tweet.app/form-submit" accept-charset="UTF-8" enctype="multipart/form-data">
+<form method="POST" action="/form-submit" accept-charset="UTF-8" enctype="multipart/form-data">
   {!! csrf_field() !!}
   <input name="file" type="file" id="file">
   <input type="submit" value="Save">
