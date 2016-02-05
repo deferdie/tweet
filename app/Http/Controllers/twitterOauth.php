@@ -11,6 +11,7 @@ use Auth;
 use DB;
 use Log;
 use App\SocialMediaVault;
+use App\SocialTrack;
 class twitterOauth extends Controller
 {
 
@@ -93,6 +94,9 @@ class twitterOauth extends Controller
         $sm->twitterName = $reply->screen_name;
         $sm->twitterID = $reply->user_id;
         $sm->save();
+
+        $addtw = new SocialTrack();
+        $addtw->addTwitterToAccount($userID->id);
 
         header('Location: /home');
       }
