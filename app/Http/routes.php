@@ -146,10 +146,14 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
     //Delete user Image
     Route::post('deleteImage', 'fileManagerController@deleteImage');
 
-
     //Routes for Shedule
-
     Route::get('/usr/cal/get-posts-json', 'tweetController@getPostsJson');
+
+    //Routes for profile and settings
+
+    Route::get('user/settings/manage-accounts', function(){
+      return view('member.sub.accounts');
+    });
 
 });
 
