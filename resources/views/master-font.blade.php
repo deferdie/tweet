@@ -46,7 +46,10 @@
                         <li><a href="auth/register">Register</a></li>
                         <li><a href="contact-us">Contact</a></li>
                         <li class="login">
-                            <a data-toggle="modal" href="#loginForm"><i class="icon-lock"></i></a>
+                          <a data-toggle="modal" href="#loginForm"><i class="icon-lock"></i></a>
+                        </li>
+                        <li class="login">
+                          <a data-toggle="modal" href="/home">Dashboard</a>
                         </li>
                     </ul>
                 </div><!--/.nav-collapse -->
