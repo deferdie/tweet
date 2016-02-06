@@ -57,9 +57,13 @@ class clientController extends Controller
       $clientToDelete = $_POST['clientID'];
       $clients = Clients::destroy($clientToDelete);
       //Delete Twitter details
-      App\SocialMediaVault::where('clientID', $clientToDelete)->delete();
-      App\twitterOAuth::where('clientID', $clientToDelete)->delete();
-      //echo "Client Deleted!";
+      //Check if model exists in SocialMediaVault
+      if(App\SocialMediaVault::where('clientID', $clientToDelete)->count() > 1){
+        App\SocialMediaVault::where('clientID', $clientToDelete)->delete();
+      }
+      if(App\twitterOAuth::where('clientID', $clientToDelete)->count() > 1){
+        App\twitterOAuth::where('clientID', $clientToDelete)->delete();
+      }
     }
 
     /**
