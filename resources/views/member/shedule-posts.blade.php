@@ -40,7 +40,7 @@
               @foreach($posts as $post)
                   <tr id="row-client-{{$post->id}}">
 
-                      <td>{{$post->clientID}}{{ App\Clients::clientName($post->clientID) }} </td>
+                      <td>{{ App\Clients::clientName($post->clientID) }} </td>
                       <td class="center"> <a href="http://twitter.com/{{App\SocialMediaVault::twitterName($post->userID)}}" target="_blank">{{App\SocialMediaVault::twitterName($post->userID)}}</a></td>
                       <td class="center">
                         @if($post->platform == 0)
