@@ -8,7 +8,7 @@ class Clients extends Model
 {
   //Return Client Name
   public static function clientName($clientID){
-    $clientName = Clients::Find(25);
+    $clientName = Clients::Find($clientID);
     return $clientName->clientName;
   }
 }
