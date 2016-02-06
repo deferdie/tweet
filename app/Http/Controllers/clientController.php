@@ -65,6 +65,9 @@ class clientController extends Controller
       if(DB::table('twitterOAuth')->where('clientID', $clientToDelete)->count() > 1){
           DB::table('twitterOAuth')>where('clientID', $clientToDelete)->delete();
       }
+      if(DB::table('posts')->where('clientID', $clientToDelete)->count() > 1){
+          DB::table('posts')>where('clientID', $clientToDelete)->delete();
+      }
     }
 
     /**
