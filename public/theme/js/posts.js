@@ -42,7 +42,6 @@ function deletePost(href, csrf_token){
 
 function deleteClient(href, csrf_token){
     $.post('/user/delete/client', {clientID: href, _token: csrf_token}, function(data){
-      //alert(data);
       $('#row-client-'+href).hide(200);
     });
 }
@@ -50,13 +49,21 @@ function deleteClient(href, csrf_token){
 function editClientModal(href, csrf_token){
     $.post('/user/edit/client', {clientID: href, _token: csrf_token}, function(data){
       //Get the array
+
       var $client = $.parseJSON(data);
       //Apply the variables
       $('#cName').html($client.clientName);
       $('#cname').val($client.clientName);
       $('#clientTwitterAuth').attr('href', '/twitter/auth?clientID=' + $client.id);
+      $('#deltw').attr('data-cid', $client.id);
       $('#editClientModal').modal('show');
     });
+}
+
+function removeSocialAccount(href, csrf_token){
+  $.post('remove-social-account', {clientID: href, _token: csrf_token}, function(data){
+    alert(data);
+  });
 }
 
 function editMesageModal(href, csrf_token){
