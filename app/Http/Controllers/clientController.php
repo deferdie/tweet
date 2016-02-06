@@ -59,13 +59,13 @@ class clientController extends Controller
       $clients = Clients::destroy($clientToDelete);
       //Delete Twitter details
       //Check if model exists in SocialMediaVault
-      if(DB::table('social_media_vaults')->where('clientID', $clientToDelete)->count() > 1){
+      if(DB::table('social_media_vaults')->where('clientID', $clientToDelete)->count() >= 1){
           DB::table('social_media_vaults')->where('clientID', $clientToDelete)->delete();
       }
-      if(DB::table('twitterOAuth')->where('clientID', $clientToDelete)->count() > 1){
+      if(DB::table('twitterOAuth')->where('clientID', $clientToDelete)->count() >= 1){
           DB::table('twitterOAuth')>where('clientID', $clientToDelete)->delete();
       }
-      if(DB::table('posts')->where('clientID', $clientToDelete)->count() > 1){
+      if(DB::table('posts')->where('clientID', $clientToDelete)->count() >= 1){
           DB::table('posts')>where('clientID', $clientToDelete)->delete();
       }
     }
