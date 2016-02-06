@@ -63,10 +63,10 @@ class clientController extends Controller
           DB::table('social_media_vaults')->where('clientID', $clientToDelete)->delete();
       }
       if(DB::table('twitterOAuth')->where('clientID', $clientToDelete)->count() >= 1){
-          DB::table('twitterOAuth')>where('clientID', $clientToDelete)->delete();
+          DB::table('twitterOAuth')->where('clientID', $clientToDelete)->delete();
       }
       if(DB::table('posts')->where('clientID', $clientToDelete)->count() >= 1){
-          DB::table('posts')>where('clientID', $clientToDelete)->delete();
+          DB::table('posts')->where('clientID', $clientToDelete)->delete();
       }
     }
 
