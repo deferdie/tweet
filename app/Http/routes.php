@@ -117,6 +117,9 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
     Route::get('/twitter/auth/', 'twitterOauth@index');
     Route::get('/twitter/auth/callback', 'twitterOauth@twitterCallbackSignIn');
 
+    //Posts for removing accounts
+    Route::post('remove-social-account', 'clientController@removeSocialAccount');
+
     //SHEDULE ROUTES
     Route::get('create-shedule-tweet', function(){
       $user = Auth::user();
