@@ -11,6 +11,7 @@ use App\Clients;
 use App\Notifacation;
 use App\SocialMediaVault;
 use Auth;
+use DB;
 class clientController extends Controller
 {
     /**
@@ -58,11 +59,11 @@ class clientController extends Controller
       $clients = Clients::destroy($clientToDelete);
       //Delete Twitter details
       //Check if model exists in SocialMediaVault
-      if(App\SocialMediaVault::where('clientID', $clientToDelete)->count() > 1){
-        App\SocialMediaVault::where('clientID', $clientToDelete)->delete();
+      if(SocialMediaVault::where('clientID', $clientToDelete)->count() > 1){
+          SocialMediaVault::where('clientID', $clientToDelete)->delete();
       }
-      if(App\twitterOAuth::where('clientID', $clientToDelete)->count() > 1){
-        App\twitterOAuth::where('clientID', $clientToDelete)->delete();
+      if(DB::table('twitterOAuth')->where('clientID', $clientToDelete)->count() > 1){
+          DB::table('twitterOAuth')>where('clientID', $clientToDelete)->delete();
       }
     }
 
