@@ -8,7 +8,7 @@ class SocialMediaVault extends Model
 {
   public static function twitterName($userID){
     $SocialMediaVault = SocialMediaVault::find($userID);
-    //return $SocialMediaVault->twitterName;
+    return $SocialMediaVault->twitterName;
   }
 
   public function deleteSocialMediaAccount($clientID){
