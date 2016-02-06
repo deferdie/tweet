@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Clients;
 use App\Notifacation;
+use App\SocialMediaVault;
 use Auth;
 class clientController extends Controller
 {
@@ -56,7 +57,11 @@ class clientController extends Controller
       $clientToDelete = $_POST['clientID'];
       $clients = Clients::find($clientToDelete);
       $clients->delete();
-      //echo "Client Deleted!";
+      //Delete Twitter details
+      App\SocialMediaVault::destroy($clientToDelete);
+      App\twitterOAuth::destroy($clientToDelete);
+
+      echo "Client Deleted!";
     }
 
     /**
@@ -95,16 +100,10 @@ class clientController extends Controller
       return $client->toJson();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function removeSocialAccount(){
+      $clientID = $_POST['clientID'];
+      $removeSocialAccount = new SocialMediaVault();
+      $removeSocialAccount->deleteSocialMediaAccount($clientID);
     }
 
 
