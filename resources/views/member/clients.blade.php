@@ -26,7 +26,9 @@
                           @foreach($clients as $client)
                               <tr id="row-client-{{$client->id}}">
                                   <td>{{ $client->clientName }}</td>
-                                  <td>Platforms Go Here</td>
+                                  <td>
+
+                                  </td>
                                   <td class="center">
                                     <span class="label label-success">Active</span>
                                   </td>
@@ -74,6 +76,13 @@
             </a>
           </div>
         </div>
+        <div class="control-group">
+          <div class="controls">
+            <a href="#" id="deltw" data-cid="">
+              Remove Twitter
+            </a>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -116,6 +125,11 @@
   $('.editClientModalLink').click(function(){
     var href = $(this).attr("data-cl")
     editClientModal(href, $('meta[name="csrf-token"]').attr('content'));
+  });
+
+  $('#deltw').click(function(){
+    var href = $(this).attr("data-cid")
+    removeSocialAccount(href, $('meta[name="csrf-token"]').attr('content'));
   });
 </script>
  <script type="text/javascript">
