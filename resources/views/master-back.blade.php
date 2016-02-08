@@ -184,12 +184,13 @@ $email = $user->email;
 						<li><a href="/clients"><i class="icon-file-alt"></i><span class="hidden-tablet">Clients</span></a></li>
 
 
-						<li><a href="/media"><i class="icon-edit"></i><span class="hidden-tablet">Media</span></a></li>
+						<li><a href="/media"><i class="icon-camera"></i><span class="hidden-tablet">Media</span></a></li>
+						<li><a href="/notes"><i class="icon-edit"></i><span class="hidden-tablet">Notes</span></a></li>
 
 
 
 
-						<li><a href="/calendar"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
+						<li><a href="/calendar"><i class="icon-calendar"></i><span class="hidden-tablet">Calendar</span></a></li>
 
 
 						<li><a href="/logout"><i class="icon-lock"></i><span class="hidden-tablet">Sign Out</span></a></li>
