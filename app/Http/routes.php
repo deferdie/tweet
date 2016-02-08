@@ -159,6 +159,12 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
       return view('member.sub.accounts');
     });
 
+    //Routes for notes
+
+    Route:get('notes', function(){
+      return view('member.notes');
+    });
+
 });
 
  Route::get('/sendCronJobs', 'tweetController@sendCronJobs');
