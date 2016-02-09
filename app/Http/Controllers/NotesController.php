@@ -6,82 +6,64 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Notes;
+use Auth;
 
 class NotesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  protected $userID;
+  protected $user;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  function __construct(){
+    $user = Auth::user();
+    $this->user = $user;
+    $this->userID = $user->id;
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  public function index(){
+    return view('member.notes', ['notes' => $this->user->notes]);
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  public function createNote(){
+    return view('member.forms.createNote');
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+  // Function to create a note
+  public function create(Request $request)
+  {
+    $saveNote = new Notes;
+    $saveNote->title = $request->input('note-title');
+    $saveNote->userID = $this->userID;
+    $saveNote->note = $request->input('note-message');
+    $saveNote->save();
+    return redirect('/notes');
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  /**
+  * Description for getNote
+  * This will return a json to the view
+  * @public
+  */
+
+  public function getNote($id){
+    $note = Notes::find($id);
+    return $note;
+  }
+
+  public function edit()
+  {
+    $note = Notes::find($_POST['utd']);
+    $note->title = $_POST['title'];
+    $note->note = $_POST['note'];
+    $note->save();
+    echo "Saved";
+  }
+
+  //Function to delete a note
+  public function destroy($id)
+  {
+    $note = Notes::destroy($id);
+    echo "Deleted";
+  }
 }
