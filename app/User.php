@@ -36,4 +36,15 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * Gets all the users notes
+     *
+     * @var array
+     */
+
+    public function notes(){
+      return $this->hasMany('App\Notes', 'userID');
+    }
+
 }
