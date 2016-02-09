@@ -149,3 +149,50 @@ $('.iCon').click(function(){
   }
 });
 }
+
+$('.note').click(function(){
+  //Get the attr
+  var csrf = $('meta[name="csrf-token"]').attr('content');
+  //$('#modalNote').modal('show');
+  var n = $(this).attr('data-nod');
+  $.getJSON('/note/get/'+n, {_token: csrf}, function(data){
+    $('.modal-title').html(data.title);
+    $('.modal-body').html(data.note);
+    $('.modal-body').attr('data-utd', n);
+    $('.note > p').attr('id', 'your'+n+'note');
+    $('#modalNote').modal('show');
+  });
+});
+var chan = 0;
+$('.modal-title, .modal-body').dblclick(function(){
+
+  if(chan == 0){
+    var tex = $('.modal-title').html();
+    var texB = $('.modal-body').html();
+    $('.modal-title').html('<input id="tit" type="text" value="'+tex+'" />');
+    $('.modal-body').html('<textarea id="not">'+texB+'</textarea>">');
+    chan = 1;
+  }else{
+    return false;
+  }
+});
+$('#utd').click(function(){
+  var csrf = $('meta[name="csrf-token"]').attr('content');
+  var tex = $('#tit').val();
+  var texB = $('#not').val();
+  var utd = $('.modal-body').attr('data-utd');
+
+  $.post('note/edit/', {_token: csrf, title: tex, note: texB, utd: utd}, function(data){
+    $('#your'+utd+'note').html('<b>'+tex+'</b>');
+    alert(data);
+  });
+});
+
+$('.del-not').on('click', function(){
+  var t = $(this).attr('data-nod');
+  var csrf = $('meta[name="csrf-token"]').attr('content');
+  $.post('note/delete/'+t, {_token: csrf}, function(data){
+    $('.note-'+t).fadeOut();
+  });
+  return false;
+});
