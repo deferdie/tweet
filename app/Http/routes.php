@@ -161,9 +161,12 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
     //Routes for notes
 
-    Route:get('notes', function(){
-      return view('member.notes');
-    });
+    Route::get('notes', 'NotesController@index');
+    Route::post('note/create', 'NotesController@create');
+    Route::get('note/create', 'NotesController@createNote');
+    Route::get('note/get/{id}', 'NotesController@getNote');
+    Route::post('note/edit/', 'NotesController@edit');
+    Route::post('note/delete/{id}', 'NotesController@destroy');
 
 });
 
