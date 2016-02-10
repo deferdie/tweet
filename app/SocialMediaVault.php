@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SocialMediaVault extends Model
 {
   public static function twitterName($userID){
-    $SocialMediaVault = SocialMediaVault::where('userID', $userID)->first();
+    $SocialMediaVault = SocialMediaVault::where('clientID', $userID)->first();
     return $SocialMediaVault->twitterName;
   }
 
