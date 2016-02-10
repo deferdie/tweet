@@ -51,6 +51,12 @@ class tweetController extends Controller
             return "Please your tweet length is grater than 140 characters";
             die();
           }
+          if($image == 1){
+            if(strlen($tweetMessage) > 116){
+              return "Please your tweet length is grater than 140 characters";
+              die();
+            }
+          }
 
         $clienID = DB::table('clients')->where('clientName', $clientName)->where('userID', $memberID)->first();
         $clienID = $clienID->id;
