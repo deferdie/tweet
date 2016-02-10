@@ -41,7 +41,7 @@
                   <tr id="row-client-{{$post->id}}">
 
                       <td>{{ App\Clients::clientName($post->clientID) }} </td>
-                      <td class="center"> <a href="http://twitter.com/{{App\SocialMediaVault::twitterName($post->userID)}}" target="_blank">{{App\SocialMediaVault::twitterName($post->userID)}}</a></td>
+                      <td class="center"> <a href="http://twitter.com/{{App\SocialMediaVault::twitterName($post->clientID)}}" target="_blank">{{App\SocialMediaVault::twitterName($post->userID)}}</a></td>
                       <td class="center">
                         @if($post->platform == 0)
                           <img class="postIco" src="<?=asset('theme/img/tw.png')?>" alt="Twitter Post" />
